@@ -2,7 +2,7 @@
 var cvs = document.getElementById('canvas');
 
 // Get Context property of Canvas
-var cxt = cvs.getContext('2d');
+var ctx = cvs.getContext('2d');
 
 // Load Images
 var pidgeot = new Image();
@@ -20,9 +20,9 @@ pipeSouth.src = "images/pipeSouth2.png";
 // Load Audios
 
 var fly = new Audio();
-var score = new Audio();
+var scoresound = new Audio();
 fly.src = "sounds/fly.mp3";
-fly.src = "sounds/score.mp3";
+scoresound.src = "sounds/score.mp3";
 
 // Const Variable
 var gap = 85;
@@ -31,6 +31,8 @@ var constant = pipeNorth.height + gap
 var bX = 10;
 var bY = 150;
 var gravity = 1.5;
+
+var score = 0;
 
 // Event Listener Key Down
 
@@ -47,15 +49,16 @@ var pipe = [];
 pipe[0] = {
   x: cvs.width,
   y: 0
-}
+};
 
 // Draw Images -- Including, Bird, Position, Wight & Height
 function draw() {
   // Placing BG image on Canvas
-  cxt.drawImage(bg, 0, 0);
+  ctx.drawImage(bg, 0, 0);
   for (var i = 0; i < pipe.length; i++) {
-    cxt.drawImage(pipeNorth, pipe[i].x, pipe[i].y);
-    cxt.drawImage(pipeSouth, pipe[i].x, pipe[i].y + constant);
+    constant = pipeNorth.height + gap;
+    ctx.drawImage(pipeNorth, pipe[i].x, pipe[i].y);
+    ctx.drawImage(pipeSouth, pipe[i].x, pipe[i].y + constant);
     pipe[i].x--;
     if (pipe[i].x == 125) {
       pipe.push({
@@ -66,24 +69,24 @@ function draw() {
 
     // Detect collision, then reload the page
     if (bX + pidgeot.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY + pidgeot.height >= pipe[i].y + constant) || bY + pidgeot.height >= cvs.height - fg.height) {
-      location.reload(); // Reload the page
+      location.reload(); // reload the page
     }
 
     if (pipe[i].x == 5) {
       score++;
-      score.play();
+      scoresound.play();
     }
   }
 
-  cxt.drawImage(fg, 0, cvs.height - fg.height);
+  ctx.drawImage(fg, 0, cvs.height - fg.height);
 
-  cxt.drawImage(pidgeot, bX, bY);
+  ctx.drawImage(pidgeot, bX, bY);
 
   bY += gravity;
 
-  // ctx.fillStyle = "#000";
-  // ctx.font = "20px Verdana";
-  // ctx.fillText("Score: " + score, 10, cvs.height - 20);
+  ctx.fillStyle = "#000";
+  ctx.font = "20px Verdana";
+  ctx.fillText("Score: " + score, 10, cvs.height - 20);
 
   requestAnimationFrame(draw);
 
