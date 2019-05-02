@@ -41,7 +41,7 @@ function moveUp() {
 
 var pipe = [];
 pipe[0] = {
-  x: cvs.clientWidth,
+  x: cvs.width,
   y: 0
 }
 
@@ -53,9 +53,15 @@ function draw() {
     cxt.drawImage(pipeNorth, pipe[i].x, pipe[i].y);
     cxt.drawImage(pipeSouth, pipe[i].x, pipe[i].y + constant);
     pipe[i].x--;
+    if (pipe[i].x == 125) {
+      pipe.push({
+        x: cvs.width,
+        y: Math.floor(Math.random() * pipeNorth.height) - pipeNorth.height
+      });
+    }
   }
 
-  // cxt.drawImage(fg, 0, cvs.height - fg.height);
+  cxt.drawImage(fg, 0, cvs.height - fg.height);
 
   cxt.drawImage(pidgeot, bX, bY);
 
