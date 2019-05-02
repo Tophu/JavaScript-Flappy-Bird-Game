@@ -12,8 +12,8 @@ var pipeNorth = new Image();
 var pipeSouth = new Image();
 
 pidgeot.src = "images/pidgeot.png";
-bg.src = "images/bg-wide-edit.png";
-fg.src = "images/fg2.png";
+bg.src = "images/bg-sm.png";
+fg.src = "images/fg3.png";
 pipeNorth.src = "images/pipeNorth2.png";
 pipeSouth.src = "images/pipeSouth2.png";
 
@@ -28,13 +28,13 @@ var constant = pipeNorth.height + gap
 
 var bX = 10;
 var bY = 150;
-var gravity = 1;
+var gravity = 1.5;
 
 // Event Listener Key Down
 
 document.addEventListener("keydown", moveUp);
 function moveUp() {
-  bY -= 20;
+  bY -= 25;
 }
 
 // Pipe coordinates
