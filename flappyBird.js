@@ -19,8 +19,10 @@ pipeSouth.src = "images/pipeSouth2.png";
 
 // Load Audios
 
-// var audioName = new Audio();
-// audioName.src = "audio/fly.mp3";
+var fly = new Audio();
+var score = new Audio();
+fly.src = "sounds/fly.mp3";
+fly.src = "sounds/score.mp3";
 
 // Const Variable
 var gap = 85;
@@ -33,8 +35,10 @@ var gravity = 1.5;
 // Event Listener Key Down
 
 document.addEventListener("keydown", moveUp);
+
 function moveUp() {
   bY -= 25;
+  fly.play();
 }
 
 // Pipe coordinates
@@ -67,6 +71,7 @@ function draw() {
 
     if (pipe[i].x == 5) {
       score++;
+      score.play();
     }
   }
 
@@ -76,9 +81,9 @@ function draw() {
 
   bY += gravity;
 
-  ctx.fillStyle = "#000";
-  ctx.font = "20px Verdana";
-  ctx.dillText("Score: " + score, 10, cvs.height - 20);
+  // ctx.fillStyle = "#000";
+  // ctx.font = "20px Verdana";
+  // ctx.fillText("Score: " + score, 10, cvs.height - 20);
 
   requestAnimationFrame(draw);
 
