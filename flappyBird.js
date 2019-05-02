@@ -22,7 +22,7 @@ pipeSouth.src = "images/pipeSouth2.png";
 var fly = new Audio();
 var scoresound = new Audio();
 fly.src = "sounds/fly.mp3";
-scoresound.src = "sounds/score.mp3";
+scoresound.src = "sounds/levelup1.mp3";
 
 // Const Variable
 var gap = 85;
@@ -37,8 +37,14 @@ var score = 0;
 // Event Listener Key Down
 
 document.addEventListener("keydown", moveUp);
+document.addEventListener("click", moveUp2);
 
 function moveUp() {
+  bY -= 25;
+  fly.play();
+};
+
+function moveUp2() {
   bY -= 25;
   fly.play();
 }
