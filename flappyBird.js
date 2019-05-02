@@ -21,11 +21,13 @@ pipeSouth.src = "images/pipeSouth2.png";
 
 var fly = new Audio();
 var scoresound = new Audio();
+var scoresound2 = new Audio();
 fly.src = "sounds/fly.mp3";
 scoresound.src = "sounds/levelup1.mp3";
+scoresound2.src = "sounds/levelup2.mp3";
 
 // Const Variable
-var gap = 85;
+var gap = 100;
 var constant = pipeNorth.height + gap
 
 var bX = 10;
@@ -81,6 +83,10 @@ function draw() {
     if (pipe[i].x == 5) {
       score++;
       scoresound.play();
+    }
+
+    if (score >= 5) {
+      scoresound2.play();
     }
   }
 
