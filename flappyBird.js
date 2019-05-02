@@ -59,6 +59,11 @@ function draw() {
         y: Math.floor(Math.random() * pipeNorth.height) - pipeNorth.height
       });
     }
+
+    // Detect collision, then reload the page
+    if (bX + pidgeot.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY + pidgeot.height >= pipe[i].y + constant) || bY + pidgeot.height >= cvs.height - fg.height) {
+      location.reload(); // Reload the page
+    }
   }
 
   cxt.drawImage(fg, 0, cvs.height - fg.height);
